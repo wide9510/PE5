@@ -1,0 +1,5 @@
+language: cpp
+#before_script: cd utility_functions
+script:
+  - gcc -o test test.cpp
+  - ./test -s
