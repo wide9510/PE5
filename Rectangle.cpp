@@ -16,29 +16,12 @@ int Rectangle::GetHeight(){
     return this->p2_.y - this->p1_.y;
 }
 
-// bool operator==(const Point &other) {
-// 		return x == other.x && y == other.y;
-// }
-
-// bool doOverlap(Point l1, Point r1, Point l2, Point r2) 
-// { 
-//     // If one rectangle is on left side of other 
-//     if (l1.x >= r2.x || l2.x >= r1.x) 
-//         return false; 
-  
-//     // If one rectangle is above other 
-//     if (l1.y <= r2.y || l2.y <= r1.y) 
-//         return false; 
-  
-//     return true; 
-// }
-
 bool Rectangle::Overlaps(Rectangle& other){
     
-    if(this->p1_.x >= other.get_p2().x || this->p2_.x >= other.get_p1().x){
+    if( (other.get_p1().y > this->p2_.y) || (this->p1_.y > other.get_p2().y)){
         return false;
     }
-    if(this->p1_.y <= other.get_p2().y || this->p2_.y <= other.get_p1().y){
+    if( (this->p2_.x < other.get_p1().x) || (other.get_p2().x < this->p1_.x)){
         return false;
     }
 

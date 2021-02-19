@@ -54,34 +54,56 @@ TEST_CASE ( "GetHeight is OK", "[GetHeight]") {
 //do we need to look at only corners overlapping, and different
 //sides overlapping?
 TEST_CASE ( "Overlaps is OK", "[Overlaps]") {
-  Point p1, p2, p3, p4, p5;
+  Point p1, p2, p3, p4, p5; 
+  Point p6, p7, p8, p9 ;
+
   p1.x = 0;
   p1.y = 0;
+
   p2.x = 2;
   p2.y = 2;
+
   p3.x = 3;
   p3.y = 3;
-  p4.x = 1;
-  p4.y = 1;
+
+  p4.x = 4;
+  p4.y = 4;
+
   p5.x = 1;
-  p5.y = 0;
-  Rectangle myRectangle(p1, p2);
-  Rectangle myOtherRectangle(p1, p2);
-  Rectangle myThirdRectangle(p3, p4);
+  p5.y = 1;
+
+  p6.x = 1;
+  p6.y = 0;
+
+  p7.x = 2;
+  p7.y = 1;
+
+  p8.x = 0;
+  p8.y = 3;
+
+  p9.x = 1;
+  p9.y = 4;
 
   
-  Rectangle r1(p1, p4);
-  Rectangle r2(p5, p2);
-  Rectangle r3(p4, p3);
+
+  Rectangle r1(p1, p2);
+  Rectangle r2(p3, p4);
+  Rectangle r3(p1, p5);
+  Rectangle r4(p6, p7);
+  Rectangle r5(p5,p3);
+  Rectangle r6(p8,p9);
+
 
   //Complete overlap (same rectangle)
-  // REQUIRE(myRectangle.Overlaps(myOtherRectangle) == true);
+  REQUIRE(r1.Overlaps(r1) == true);
   //Completely separate- no overlap
-  REQUIRE(myRectangle.Overlaps(myThirdRectangle) == false);
+  REQUIRE(r1.Overlaps(r2) == false);
   //Share the line x = 1, share an edge
-  REQUIRE(r1.Overlaps(r2) == true);
-  //Partial overlap
-  REQUIRE(myRectangle.Overlaps(r3) == true);
+  REQUIRE(r3.Overlaps(r4) == true);
+  //Partial overlap, no corners shared
+  REQUIRE(r1.Overlaps(r5) == true);
+  //share corners that aren't p1 or p2
+  REQUIRE(r5.Overlaps(r6) == true);
   
 }
 
