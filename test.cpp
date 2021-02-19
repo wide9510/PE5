@@ -167,11 +167,17 @@ TEST_CASE ( "Shrink is OK", "[Shrink]") {
   p2.y = 2;
   p3.x = 3;
   p3.y = 3;
-  Rectangle myRectangle(p1, p2);
   Rectangle r1(p0, p3);
+  Rectangle r2(p0,p0);
   r1.Shrink();
   REQUIRE(r1.get_p1().x == p1.x);
   REQUIRE(r1.get_p1().y == p1.y);
   REQUIRE(r1.get_p2().x == p2.x);
   REQUIRE(r1.get_p2().y == p2.y);
+  r2.Shrink();
+  REQUIRE(r2.get_p1().x == p0.x);
+  REQUIRE(r2.get_p1().y == p0.y);
+  REQUIRE(r2.get_p2().x == p0.x);
+  REQUIRE(r2.get_p2().y == p0.y);
+
 }

@@ -50,10 +50,12 @@ void Rectangle::Expand(){
     p2_.x++;
     p2_.y++;
 }
-//no bugs found
+//shrink past a point
 void Rectangle::Shrink(){
-    p1_.x++;
-    p1_.y++;
-    p2_.x--;
-    p2_.y--;
+    if( (p1_.x != p2_.x) && (p1_.y != p2_.y)){
+        p1_.x++;
+        p1_.y++;
+        p2_.x--;
+        p2_.y--;
+    }
 }
