@@ -16,11 +16,19 @@ TEST_CASE ( "Constructor is OK", "[Rectangle]") {
   p2.x = 1;
   p2.y = 1;
   Rectangle myRectangle(p1, p2);
+  //reversed space rectangle
+  Rectangle myRectangle2(p2, p1);
 
   REQUIRE(myRectangle.get_p1().x == p1.x);
   REQUIRE(myRectangle.get_p1().y == p1.y);
   REQUIRE(myRectangle.get_p2().x == p2.x);
   REQUIRE(myRectangle.get_p2().y == p2.y);
+
+  //test reversing to negative space
+  REQUIRE(myRectangle2.get_p1().x == p1.x);
+  REQUIRE(myRectangle2.get_p1().y == p1.y);
+  REQUIRE(myRectangle2.get_p2().x == p2.x);
+  REQUIRE(myRectangle2.get_p2().y == p2.y);
   
 }
 
